@@ -1,4 +1,5 @@
 {% load static %}
+{% load rowssplit %}
 
     <!-- All Products -->
 
@@ -13,10 +14,15 @@
                 <option>Sort By Sale</option>
             </select>
         </div>
+        {% for product_split in product|rowssplit:5 %}
         <div class="row">
+            {% for product in product_split %}
+
+           
             <div class="col-4">
-                <a href="{% url 'product_detail' %}"><img src="{% static 'images/product-1.jpg' %}"></a>
-                <h4>Red Printed T-Shirt</h4>
+                <img class="image-product" style="    height: 270px;
+                width: 150px;overflow: hidden; object-fit: contain;" src="{{product.image.url}}">
+                <h4>{{product.title}}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -24,15 +30,15 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$50.00</p>
+                <p>${{product.price}}</p>
             </div>
-      
+            {% endfor %}
         </div>
+        {% endfor %}
         <div class="page-btn">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>&#8594;</span>
+            {% for i in product.paginator.page_range %}
+            <a href="?page={{i}}"><span>{{i}}</span></a>
+
+            {% endfor %}
         </div>
     </div>
