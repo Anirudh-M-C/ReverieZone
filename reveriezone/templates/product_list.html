@@ -36,9 +36,15 @@
         </div>
         {% endfor %}
         <div class="page-btn">
+            {% if product.has_previous %}
+            <a href="?page={{product.previous_page_number}}"><span><<</span></a>
+            {% endif %}
             {% for i in product.paginator.page_range %}
             <a href="?page={{i}}"><span>{{i}}</span></a>
-
             {% endfor %}
+            {% if product.has_next %}
+            <a href="?page={{product.next_page_number}}"><span>>></span></a>
+            {% endif %}
+
         </div>
     </div>
