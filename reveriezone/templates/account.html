@@ -17,18 +17,34 @@
                             <span onclick="register()">Register</span>
                             <hr id="Indicator">
                         </div>
-                        <form id="LoginForm">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
+                        <form id="LoginForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text" required name="username" placeholder="Username">
+                            <input type="password" required name="password" placeholder="Password">
                             <button type="submit" class="btn">Login</button>
                             <a href="">Forget Password</a>
                         </form>
 
-                        <form id="RegForm">
-                            <input type="text" placeholder="Username">
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
-                            <button type="submit" class="btn">Register</button>
+                        <form id="RegForm"  method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text" name="username" maxlength="10" placeholder="Username">
+                            <input type="email" name="email" required placeholder="Email">
+                            <input type="number" name="pincode" placeholder="pincode">
+                            <input type="text" required name="address" placeholder="address">
+                            <input type="city" name="city" placeholder="city">
+                            <select style="width: 100%;" name="state">
+                                <option value="">Select State</option> <!-- Default option for selection -->
+                                {% for state_code, state_name in STATE_CHOICES %}
+                                    <option value="{{ state_code }}">{{ state_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="tel" name="phone" placeholder="phone">
+                            <select name="location">
+                                <option value="Home">Home (All day delivery)</option>
+                                <option value="Workplace">Workplace (Delivery between 10AM-6PM)</option>
+                            </select>
+                            <input type="password" minlength="6" required name="password" placeholder="Password">
+                            <button type="submit" name="register" class="btn">Register</button>
                         </form>
                     </div>
                 </div>
