@@ -20,6 +20,7 @@
 
            
             <div class="col-4">
+               <a href="{% url 'product_detail' product.id %}">
                 <img class="image-product" style="    height: 270px;
                 width: 150px;overflow: hidden; object-fit: contain;" src="{{product.image.url}}">
                 <h4>{{product.title}}</h4>
@@ -31,6 +32,7 @@
                     <i class="fa fa-star-o"></i>
                 </div>
                 <p>${{product.price}}</p>
+               </a>
             </div>
             {% endfor %}
         </div>
