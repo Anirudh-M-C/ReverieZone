@@ -13,9 +13,14 @@
             <p>{{product.title}}</p>
             <h1>{{product.title}}</h1>
             <h4>{{product.price}}</h4>
-            <input type="number" value="1">
-            <a href="#" class="btn">Add To Cart</a>
-            <a href="" class="btn">BUY NOW</a>
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" value="{{product.id}}" name="product_id">
+                <input type="number" name="qnatity" value="1">
+                <button  class="btn">Add To Cart</button>
+                <button  class="btn">BUY NOW</button>
+            </form>
+
 
             <h3>Product Details <i class="fa fa-indent"></i></h3>
             <br>
