@@ -1,3 +1,3 @@
 ReverieZone
 
-e commerce web
+e commerce web using django
